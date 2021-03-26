@@ -1,5 +1,21 @@
 <%- include('./partials/header') %>
 
-<h1>THIS IS THE HOME PAGE FOR USERS</h1>
+<h1>THE JUICE</h1>
+<thead>
+  <tr>
+    <th>Vintage</th>
+    <th>Location</th>
+    <th>Producer</th>
+    <th>Variety</th>
+    <th>Price</th>
+  </tr>
+</thead>
+<tbody>
+  <% wines.forEach(function(w) { %>
+  <tr>
+    <td><%= w.vintage %></td>
+
+  </tr>
+</tbody>
 
 <%- include('./partials/footer') %>

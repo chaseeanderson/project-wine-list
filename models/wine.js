@@ -10,6 +10,7 @@ const tastingNoteSchema = new Schema({
 
 const wineSchema = new Schema({
   producer: {type: String, required: true},
+  producerDetails: {type: String},
   location: {type: Schema.Types.ObjectId, ref: 'Location'},
   variety: {type: String},
   vintage: {type: Number},

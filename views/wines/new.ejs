@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<h1>BUILD A WINE</h1>
+
+<form action="/wines/home" method="POST" id="new-form">
+  <label>Producer:</label>
+  <input type="text" name="producer">
+  <label>Producer Details:</label>
+  <input type="text" name="producerDetails">
+  <label>Variety:</label>
+  <input type="text" name="variety">
+  <label>Vintage:</label>
+  <input type="number" required pattern="\d{4}" name="vintage">
+  <label>Price:</label>
+  <input type="number" name="price">
+  <input type="submit" value="ADD THAT JUICE">  
+</form>
+
+<%- include('../partials/footer') %>

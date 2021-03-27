@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET Home (Wines) Page
-router.get('/wines', isLoggedIn, winesCtrl.index);
+router.get('/wines/home', isLoggedIn, winesCtrl.index);
 
 // OAuth routers
 router.get('/auth/google', passport.authenticate(
@@ -22,7 +22,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/wines',
+    successRedirect : '/wines/home',
     failureRedirect : '/'
   }
 ));

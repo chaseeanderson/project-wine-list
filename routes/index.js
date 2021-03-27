@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
+const winesCtrl = require('../controllers/wines');
+const isLoggedIn = require('../config/auth');
 
 // GET Welcome Page
 router.get('/', function(req, res, next) {
@@ -9,10 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 // GET Home (Wines) Page
-router.get('/wines', function(req, res, next) {
-  res.render('wines', { title: 'Wines' });
-});
+router.get('/wines', isLoggedIn, winesCtrl.index);
 
+// OAuth routers
 router.get('/auth/google', passport.authenticate(
   'google', 
   {scope: ['profile', 'email']}

@@ -1,23 +1,29 @@
 <%- include('../partials/header') %>
 
 <h1>THE JUICE</h1>
-<thead>
-  <tr>
-    <th>Vintage</th>
-    <th>Location</th>
-    <th>Producer</th>
-    <th>Variety</th>
-    <th>Price</th>
-  </tr>
-</thead>
-<tbody>
-  <% wines.forEach(function(w) { %>
-  <tr>
-    <td><%= w.vintage %></td>
-
-  </tr>
-  <% }); %>
-</tbody>
-<a href="/wines/new">ADD SOME JUICE!</a>
-
-<%- include('../partials/footer') %>
+<table>
+  <thead>
+    <tr>
+      <th>Vintage</th>
+      <th>Location</th>
+      <th>Producer</th>
+      <th>Variety</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% wines.forEach(function(w) { %>
+      <tr>
+        <td><%= w.vintage %></td>
+        <td><%= w.location %></td>
+        <td><%= w.producer %></td>
+        <td><%= w.variety %></td>
+        <td><%= w.price %></td>
+        
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+    <a href="/wines/new">ADD SOME JUICE!</a>
+    
+    <%- include('../partials/footer') %>

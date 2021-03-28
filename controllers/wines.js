@@ -9,7 +9,7 @@ module.exports = {
 
 
 function index (req, res) {
-  Wine.find({}, function(err, wines) {
+  Wine.find({usersListing: req.user._id}, function(err, wines) {
     res.render('wines/home', { title: 'Home', wines });
   });
 }
@@ -29,5 +29,5 @@ function create (req, res) {
 function show (req, res) {
   Wine.findById(req.params.id, function(err, wine) {
     res.render('wines/show', {title: 'Wine Details', wine});
-  })
+  });
 }

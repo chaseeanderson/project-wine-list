@@ -3,7 +3,8 @@ const Wine = require('../models/wine');
 module.exports = {
   index,
   new: newWine,
-  create
+  create,
+  show
 }
 
 
@@ -21,11 +22,12 @@ function create (req, res) {
   const wine = new Wine(req.body);
   wine.usersListing.push(req.user._id);
   wine.save(err => {
-    err ? res.render('wines/new') : res.redirect('wines/home');
+    err ? res.render('wines/new') : res.redirect('home');
   });
+}
 
-  // Wine.create(req.body, function(err, wine) {
-    
-  //   err ? res.render('wines/new') : res.redirect('wines/home');
-  // });
+function show (req, res) {
+  Wine.findById(req.params.id, function(err, wine) {
+    res.render('wines/show', {title: 'Wine Details', wine});
+  })
 }

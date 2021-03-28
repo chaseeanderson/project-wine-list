@@ -20,6 +20,13 @@
         <td><%= w.variety %></td>
         <td><%= w.price %></td>
         <td><a href="/wines/<%= w._id %>">EXPLORE</a></td>
+        <% if (user) { %>
+          <td>
+            <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
+              <button type="submit">REMOVE</button>
+            </form>
+          <% } %>
+          </td>
       </tr>
       <% }); %>
     </tbody>

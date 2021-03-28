@@ -4,7 +4,8 @@ module.exports = {
   index,
   new: newWine,
   create,
-  show
+  show,
+  delete: deleteWine
 }
 
 
@@ -29,5 +30,11 @@ function create (req, res) {
 function show (req, res) {
   Wine.findById(req.params.id, function(err, wine) {
     res.render('wines/show', {title: 'Wine Details', wine});
+  });
+}
+
+function deleteWine (req, res) {
+  Wine.findOneAndDelete({_id: req.params.id, usersListing: req.user._id}, function (err) {
+    res.redirect('home');
   });
 }

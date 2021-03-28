@@ -1,11 +1,44 @@
 <%- include('../partials/header') %>
 
 <h1>WHATS THIS</h1>
-<h2><%= wine.vintage %></h2>
-<h2><%= wine.location %></h2>
-<h2><%= wine.producer %></h2>
-<h2><%= wine.variety %></h2>
-<h2><%= wine.producerDetails %></h2>
-<h2><%= wine.price %></h2> 
+<h4><%= wine.vintage %></h4>
+<h4><%= wine.location %></h4>
+<h4><%= wine.producer %></h4>
+<h4><%= wine.variety %></h4>
+<h4><%= wine.producerDetails %></h4>
+<h4><%= wine.price %></h4> 
+
+<h2>Tasting Notes</h2>
+
+<% if (wine.tastingNote.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% wine.tastingNote.forEach(function(note) { %>
+        <tr>
+          <td><img src="<%= note.userAvatar %>"><%= note.userName %></td>
+          <td><% note.content %></td>
+        </tr>
+      <% }); %>  
+    </tbody>
+  </table>
+<% } else { %> 
+  <h4>Don't Be Shy! What'd You Think?</h4>
+<% } %>
+
+<% if (user) { %> 
+<form action="/wines/:id/tasting-notes" method="POST">
+  <textarea name="content" placeholder="What'd you think?"></textarea>
+  <input type="submit" value="SEND IT">
+</form>
+<% } %>
+
+
 
 <%- include('../partials/footer') %>

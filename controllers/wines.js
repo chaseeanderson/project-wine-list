@@ -6,7 +6,8 @@ module.exports = {
   create,
   show,
   delete: deleteWine,
-  edit
+  edit,
+  update
 }
 
 
@@ -42,7 +43,18 @@ function deleteWine (req, res) {
 
 function edit (req, res) {
   Wine.findOne({_id: req.params.id, usersListing: req.user._id}, function (err, wine) {
-    if (err || !wine) res.redirect('/home');
+    if (err || !wine) res.redirect('home');
     res.render(`wines/edit`, { title: 'EDIT ME', wine });
   });
+}
+
+function update (req, res) {
+  Wine.findOneAndUpdate({_id: req.params.id, usersListing: req.user._id},
+    req.body,
+    {new: true},
+    function (err, wine) {
+      if (err || !wine) res.redirect('home');
+      res.redirect(`${req.params.id}`);
+    }
+  );
 }

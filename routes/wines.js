@@ -13,5 +13,7 @@ router.get('/:id/edit', isLoggedIn, winesCtrl.edit);
 router.post('/home', isLoggedIn, winesCtrl.create);
 // DELETE delete a wine from user's list
 router.delete('/:id', isLoggedIn, winesCtrl.delete);
+// PUT update a wine's details
+router.put('/:id', isLoggedIn, winesCtrl.update);
 
 module.exports = router;

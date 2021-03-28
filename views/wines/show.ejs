@@ -10,7 +10,7 @@
 
 <h2>Tasting Notes</h2>
 
-<% if (wine.tastingNote.length) { %>
+<% if (wine.tastingNotes.length) { %>
   <table>
     <thead>
       <tr>
@@ -20,10 +20,11 @@
       </tr>
     </thead>
     <tbody>
-      <% wine.tastingNote.forEach(function(note) { %>
+      <% wine.tastingNotes.forEach(function(note) { %>
         <tr>
           <td><img src="<%= note.userAvatar %>"><%= note.userName %></td>
-          <td><% note.content %></td>
+          <td><%= note.createdAt.toLocaleDateString() %></td>
+          <td><%= note.content %></td>
         </tr>
       <% }); %>  
     </tbody>
@@ -33,7 +34,7 @@
 <% } %>
 
 <% if (user) { %> 
-<form action="/wines/:id/tasting-notes" method="POST">
+<form action="/wines/<%= wine._id %>/tasting-notes" method="POST">
   <textarea name="content" placeholder="What'd you think?"></textarea>
   <input type="submit" value="SEND IT">
 </form>

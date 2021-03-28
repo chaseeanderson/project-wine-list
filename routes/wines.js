@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const isLoggedIn = require('../config/auth');
+const wines = require('../controllers/wines');
 const winesCtrl = require('../controllers/wines');
 
 // GET view for adding a new wine

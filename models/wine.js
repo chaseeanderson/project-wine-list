@@ -15,7 +15,7 @@ const wineSchema = new Schema({
   variety: {type: String},
   vintage: {type: Number},
   price: {type: Number},
-  tastingNote: [tastingNoteSchema],
+  tastingNotes: [tastingNoteSchema],
   usersListing: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, {timestamps: true});
 

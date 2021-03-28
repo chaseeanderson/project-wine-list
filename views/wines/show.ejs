@@ -25,6 +25,13 @@
           <td><img src="<%= note.userAvatar %>"><%= note.userName %></td>
           <td><%= note.createdAt.toLocaleDateString() %></td>
           <td><%= note.content %></td>
+          <% if (user && user._id.equals(note.user)) { %>
+          <td>
+            <form action="/tasting-notes/<%= note._id %>?_method=DELETE" method="POST">
+              <button type="submit">REMOVE</button>
+            </form>
+          <% } %>
+          </td>
         </tr>
       <% }); %>  
     </tbody>

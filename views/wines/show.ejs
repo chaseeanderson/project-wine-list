@@ -1,12 +1,18 @@
 <%- include('../partials/header') %>
 
-<h1>WHATS THIS</h1>
+<label>Vintage:</label>
 <h4><%= wine.vintage %></h4>
+<label>Location:</label>
 <h4><%= wine.location %></h4>
+<label>Producer:</label>
 <h4><%= wine.producer %></h4>
+<label>Variety:</label>
 <h4><%= wine.variety %></h4>
+<label>Producer Details:</label>
 <h4><%= wine.producerDetails %></h4>
+<label>Price:</label>
 <h4><%= wine.price %></h4> 
+<a href="/wines/<%= wine._id %>/edit">EDIT</a>
 
 <h2>Tasting Notes</h2>
 

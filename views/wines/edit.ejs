@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<form action="/wines/<%= wine._id %>?_method=PUT" method="POST" id="new-form">
+  <label>Producer:</label>
+  <input type="text" name="producer" value="<%= wine.producer %>">
+  <label>Producer Details:</label>
+  <input type="text" name="producerDetails" value="<%= wine.producerDetails %>">
+  <label>Variety:</label>
+  <input type="text" name="variety" value="<%= wine.variety %>">
+  <label>Vintage:</label>
+  <input type="number" required pattern="\d{4}" name="vintage" value="<%= wine.vintage %>">
+  <label>Price:</label>
+  <input type="number" name="price" value="<%= wine.price %>">
+  <input type="submit" value="UPDATE THAT JUICE">  
+</form>
+
+<%- include('../partials/footer') %>

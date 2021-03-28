@@ -1,6 +1,5 @@
 <%- include('../partials/header') %>
 
-<h1>THE JUICE</h1>
 <table>
   <thead>
     <tr>
@@ -25,8 +24,8 @@
             <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
               <button type="submit">REMOVE</button>
             </form>
-          <% } %>
           </td>
+        <% } %>
       </tr>
       <% }); %>
     </tbody>

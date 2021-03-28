@@ -5,18 +5,19 @@ module.exports = {
   new: newWine,
   create,
   show,
-  delete: deleteWine
+  delete: deleteWine,
+  edit
 }
 
 
 function index (req, res) {
   Wine.find({usersListing: req.user._id}, function(err, wines) {
-    res.render('wines/home', { title: 'Home', wines });
+    res.render('wines/home', { title: 'THE JUICE', wines });
   });
 }
 
 function newWine (req, res) {
-  res.render('wines/new', { title: 'Add Wine' });
+  res.render('wines/new', { title: 'BUILD A WINE' });
 }
 
 function create (req, res) {
@@ -29,12 +30,19 @@ function create (req, res) {
 
 function show (req, res) {
   Wine.findById(req.params.id, function(err, wine) {
-    res.render('wines/show', {title: 'Wine Details', wine});
+    res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine});
   });
 }
 
 function deleteWine (req, res) {
   Wine.findOneAndDelete({_id: req.params.id, usersListing: req.user._id}, function (err) {
     res.redirect('home');
+  });
+}
+
+function edit (req, res) {
+  Wine.findOne({_id: req.params.id, usersListing: req.user._id}, function (err, wine) {
+    if (err || !wine) res.redirect('/home');
+    res.render(`wines/edit`, { title: 'EDIT ME', wine });
   });
 }

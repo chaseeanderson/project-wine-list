@@ -13,12 +13,12 @@ module.exports = {
 
 function index (req, res) {
   Wine.find({usersListing: req.user._id}, function(err, wines) {
-    res.render('wines/home', { title: 'THE JUICE', wines });
+    res.render('wines/home', {title: 'THE JUICE', wines});
   });
 }
 
 function newWine (req, res) {
-  res.render('wines/new', { title: 'BUILD A WINE' });
+  res.render('wines/new', {title: 'BUILD A WINE'});
 }
 
 function create (req, res) {
@@ -44,7 +44,7 @@ function deleteWine (req, res) {
 function edit (req, res) {
   Wine.findOne({_id: req.params.id, usersListing: req.user._id}, function (err, wine) {
     if (err || !wine) res.redirect('home');
-    res.render(`wines/edit`, { title: 'EDIT ME', wine });
+    res.render(`wines/edit`, {title: 'EDIT ME', wine});
   });
 }
 

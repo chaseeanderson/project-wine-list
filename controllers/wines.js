@@ -1,4 +1,5 @@
 const Wine = require('../models/wine');
+const Location = require('../models/location');
 
 module.exports = {
   index,
@@ -30,8 +31,9 @@ function create (req, res) {
 }
 
 function show (req, res) {
-  Wine.findById(req.params.id, function(err, wine) {
-    res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine});
+  Wine.findById(req.params.id).populate('location').exec(function(err, wine) {
+    Location.find({}, (err, locations) => {if (err) console.log (err)});
+    res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine, locations});
   });
 }
 

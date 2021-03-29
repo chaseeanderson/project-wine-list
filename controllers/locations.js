@@ -15,13 +15,13 @@ function newLocation (req, res) {
 }
 
 function create (req, res) {
-  const location = new Location(req.body);
-  location.save(err => {
-    err ? res.render('locations/new') : res.redirect('locations');
-  });
-}
+    Location.create(req.body, (err, flight) => 
+    err ? console.log(err) : res.redirect('locations'));
+  }
 
-// function create (req, res) {
-//   Location.create(req.body, (err, flight) => 
-//   err ? console.log(err) : res.redirect('locations'));
-// }
+  // function create (req, res) {
+  //   const location = new Location(req.body);
+  //   location.save(err => {
+  //     err ? res.render('locations/new') : res.redirect('locations');
+  //   });
+  // }

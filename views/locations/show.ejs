@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+
+<label>Region:</label>
+<h4><%= location.region %></h4>
+<label>Sub Region:</label>
+<h4><%= location.subRegion %></h4>
+<label>Location Details:</label>
+<h4><%= location.locationDetails %></h4>
+<a href="/locations/<%= location._id %>/edit">EDIT</a>
+
+<%- include('../partials/footer') %>

@@ -4,6 +4,7 @@ module.exports = {
   index,
   new: newLocation,
   create,
+  show
 }
 
 function index (req, res) {
@@ -15,13 +16,11 @@ function newLocation (req, res) {
 }
 
 function create (req, res) {
-    Location.create(req.body, (err, flight) => 
-    err ? console.log(err) : res.redirect('locations'));
-  }
+    Location.create(req.body, (err, location) => 
+    err ? res.render('locations/new') : res.redirect('locations'));
+}
 
-  // function create (req, res) {
-  //   const location = new Location(req.body);
-  //   location.save(err => {
-  //     err ? res.render('locations/new') : res.redirect('locations');
-  //   });
-  // }
+function show (req, res) {
+  Location.findById(req.params.id, (err, location) =>
+    res.render('locations/show', {title: `${location.country}`, location}));
+}

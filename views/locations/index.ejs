@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% locations.forEach(function(l) { %>
+      <tr>
+        <td><%= l.country %></td>
+        <td><a href="/locations/<%= l._id %>">EXPLORE</a></td>
+        <% if (user) { %>
+          <td>
+            <form action="/locations/<%= l._id %>?_method=DELETE" method="POST">
+              <button type="submit">REMOVE</button>
+            </form>
+          </td>
+          <% } %>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <a href="/locations/new">ADD A REGION!</a>
+  </table>
+    
+<%- include('../partials/footer') %>

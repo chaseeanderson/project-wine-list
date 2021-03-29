@@ -3,6 +3,7 @@ const Location = require('../models/location');
 module.exports = {
   index,
   new: newLocation,
+  create,
 }
 
 function index (req, res) {
@@ -11,4 +12,9 @@ function index (req, res) {
 
 function newLocation (req, res) {
   res.render('locations/new', {title: 'BUILD A PLACE'});
+}
+
+function create (req, res) {
+  Location.create(req.body, (err, flight) => 
+  err ? res.render('locations/new') : res.redirect('locations'));
 }

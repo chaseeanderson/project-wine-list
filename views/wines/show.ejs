@@ -12,7 +12,7 @@
 <h4><%= wine.price %></h4> 
 <a href="/wines/<%= wine._id %>/edit">EDIT</a>
 <label>Location:</label>
-<h4><%= wine.location %></h4>
+<h4><%= wine.location.country %></h4>
 
 <form action="/wines/<%= wine._id %>/locations" method="POST">
   <select name="locationId">
@@ -20,6 +20,7 @@
       `<option value="${l._id}">${l.country} | ${l.region} | ${l.subRegion} </option>`
     ).join('') %> 
   </select>
+  <button type="submit">ADD A PLACE</button>
 </form>
 
 <h2>Tasting Notes</h2>

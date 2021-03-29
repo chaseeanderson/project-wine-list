@@ -14,7 +14,11 @@
     <% wines.forEach(function(w) { %>
       <tr>
         <td><%= w.vintage %></td>
+        <% if (w.location) { %>
         <td><%= w.location.country %></td>
+        <% } else { %>
+          <td></td>
+        <% } %>
         <td><%= w.producer %></td>
         <td><%= w.variety %></td>
         <td><%= w.price %></td>

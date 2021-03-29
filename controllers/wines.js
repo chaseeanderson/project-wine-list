@@ -13,7 +13,7 @@ module.exports = {
 
 
 function index (req, res) {
-  Wine.find({usersListing: req.user._id}, function(err, wines) {
+  Wine.find({usersListing: req.user._id}).populate('location').exec(function(err, wines) {
     res.render('wines/home', {title: 'THE JUICE', wines});
   });
 }

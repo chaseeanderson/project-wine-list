@@ -31,7 +31,7 @@ function show (req, res) {
 
 function addToWine (req, res) {
   Wine.findById(req.params.id, function (err, wine) {
-    wine.location.push(req.body.locationId);
+    wine.location = req.body.locationId;
     wine.save(err => res.redirect(`/wines/${wine._id}`));
   });  
 }

@@ -14,7 +14,7 @@
     <% wines.forEach(function(w) { %>
       <tr>
         <td><%= w.vintage %></td>
-        <td><%= w.location %></td>
+        <td><%= w.location.country %></td>
         <td><%= w.producer %></td>
         <td><%= w.variety %></td>
         <td><%= w.price %></td>

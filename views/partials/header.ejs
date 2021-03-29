@@ -11,6 +11,9 @@
   <nav>
     <% if (user) { %>
     <a href="/wines/home">HOME</a>
+    <a href="/wines/new">BUILD A WINE</a>
+    <a href="/locations/new">BUILD A PLACE</a>
+    <a href="/locations">LOCATION GUIDE</a>
     <a href="/logout">LOG OUT</a>
     <h5>Hello, <%= user.name %>!</h5>
     <% } else { %>

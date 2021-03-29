@@ -44,7 +44,7 @@ function deleteWine (req, res) {
 function edit (req, res) {
   Wine.findOne({_id: req.params.id, usersListing: req.user._id}, function (err, wine) {
     if (err || !wine) res.redirect('home');
-    res.render(`wines/edit`, {title: 'EDIT ME', wine});
+    res.render('wines/edit', {title: 'EDIT ME', wine});
   });
 }
 

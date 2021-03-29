@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const locationSchema = new Schema({
-  country: {type: String, required: true, unique: true},
-  region: {type: String, unique: true},
-  subRegion: {type: String, unique: true},
+  country: {type: String, required: true},
+  region: {type: String},
+  subRegion: {type: String},
   locationDetails: {type: String}
 }, {timestamps: true})
 

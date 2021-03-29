@@ -32,8 +32,9 @@ function create (req, res) {
 
 function show (req, res) {
   Wine.findById(req.params.id).populate('location').exec(function(err, wine) {
-    Location.find({}, (err, locations) => {if (err) console.log (err)});
-    res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine, locations});
+    Location.find({}).sort({country: 'asc'}).exec(function (err, locations) {
+      res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine, locations});
+    });
   });
 }
 

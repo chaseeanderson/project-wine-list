@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function index (req, res) {
-  Location.find({}, (err, locations) => res.render('locations', {title: 'REGIONS', locations}));
+  Location.find({}).sort({country: 'asc'}).exec((err, locations) => res.render('locations', {title: 'REGIONS', locations}));
 }
 
 function newLocation (req, res) {

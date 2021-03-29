@@ -14,7 +14,13 @@
 <label>Location:</label>
 <h4><%= wine.location %></h4>
 
-<form action=""></form>
+<form action="/wines/<%= wine._id %>/locations" method="POST">
+  <select name="locationId">
+    <%- locations.map(l => 
+      `<option value="${l._id}">${l.country} | ${l.region} | ${l.subRegion} </option>`
+    ).join('') %> 
+  </select>
+</form>
 
 <h2>Tasting Notes</h2>
 

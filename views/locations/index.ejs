@@ -11,7 +11,7 @@
       <tr>
         <td><%= l.country %></td>
         <td><a href="/locations/<%= l._id %>">EXPLORE</a></td>
-        <% if (user) { %>
+        <% if (user && user._id.equals(l.user)) { %>
           <td>
             <form action="/locations/<%= l._id %>?_method=DELETE" method="POST">
               <button type="submit">REMOVE</button>

@@ -8,7 +8,8 @@ module.exports = {
   show,
   addToWine,
   edit,
-  update
+  update,
+  delete: deleteLocation
 }
 
 function index (req, res) {
@@ -40,8 +41,9 @@ function addToWine (req, res) {
 }
 
 function edit (req, res) {
-  Location.findOne({_id: req.params.id, user: req.user._id}, function (err, location) {
-    if (err || !location) res.redirect('location');
+  Location.findOne({_id: req.params.id}, function (err, location) {
+    if (err || !location) res.redirect('locations');
+    if (!location.user.equals(req.user._id)) res.redirect('/wines/home');
     res.render('locations/edit', {title: 'EDIT ME', location});
   });
 }
@@ -51,7 +53,15 @@ function update (req, res) {
     req.body,
     {new: true},
     (err, location) => {
-      (err || !location) ? res.redirect('location') : res.redirect(`${req.params.id}`);
+      if (!location.user.equals(req.user._id)) res.redirect('/wines/home');
+      (err || !location) ? res.redirect('locations') : res.redirect(`${req.params.id}`)
     }
   );
+}
+
+function deleteLocation (req, res) {
+  Location.findOneAndDelete({_id: req.params.id, user: req.user._id},
+    (err, location) => {
+      (!location.user.equals(req.user._id)) ? res.redirect('/wines/home') : res.redirect('/locations');
+    });
 }

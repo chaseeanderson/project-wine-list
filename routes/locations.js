@@ -16,6 +16,8 @@ router.post('/locations', isLoggedIn, locationsCtrl.create);
 // POST to add location to wine
 router.post('/wines/:id/locations', isLoggedIn, locationsCtrl.addToWine);
 // PUT to update a location
-router.put('/locations/:id', isLoggedIn, locationsCtrl.update)
+router.put('/locations/:id', isLoggedIn, locationsCtrl.update);
+// DELETE to remove a location
+router.delete('/locations/:id', isLoggedIn, locationsCtrl.delete);
 
 module.exports = router; 

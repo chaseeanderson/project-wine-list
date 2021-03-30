@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<form action="/locations/<%= location._id %>?_method=PUT" method="POST" id="new-form">
+  <label>Country:</label>
+  <input type="text" name="country" value="<%= location.country %>">
+  <label>Region:</label>
+  <input type="text" name="region" value="<%= location.region %>">
+  <label>Sub Region:</label>
+  <input type="text" name="subRegion" value="<%= location.subRegion %>">
+  <label>Location Details:</label>
+  <input type="text" name="locationDetails" value="<%= location.locationDetails %>">
+  <input type="submit" value="UPDATE THAT PLACE">  
+</form>
+
+<%- include('../partials/footer') %>

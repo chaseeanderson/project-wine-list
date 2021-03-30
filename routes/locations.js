@@ -9,6 +9,8 @@ router.get('/locations', isLoggedIn, locationsCtrl.index);
 router.get('/locations/new', isLoggedIn, locationsCtrl.new);
 // GET view of location details
 router.get('/locations/:id', isLoggedIn, locationsCtrl.show);
+// GET view form to edit a location 
+router.get('/locations/:id/edit', isLoggedIn, locationsCtrl.edit);
 // POST create a new location
 router.post('/locations', isLoggedIn, locationsCtrl.create);
 // POST to add location to wine

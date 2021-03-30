@@ -6,7 +6,8 @@ module.exports = {
   new: newLocation,
   create,
   show,
-  addToWine
+  addToWine,
+  edit
 }
 
 function index (req, res) {
@@ -18,10 +19,11 @@ function newLocation (req, res) {
 }
 
 function create (req, res) {
-    Location.create(req.body, function (err, location) {
-      Location.user = req.user._id;
-      err ? res.render('locations/new') : res.redirect('locations');
-    });
+  const location = new Location(req.body);
+  location.user = req.user._id;
+  location.save(err => {
+    err ? res.render('locations/new') : res.redirect('locations');
+  });
 }
 
 function show (req, res) {
@@ -34,4 +36,11 @@ function addToWine (req, res) {
     wine.location = req.body.locationId;
     wine.save(err => res.redirect(`/wines/${wine._id}`));
   });  
+}
+
+function edit (req, res) {
+  Location.findOne({_id: req.params.id, user: req.user._id}, function (err, location) {
+    if (err || !location) res.redirect('location');
+    res.render('locations/edit', {title: 'EDIT ME', location});
+  });
 }

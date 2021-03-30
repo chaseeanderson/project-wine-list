@@ -2,7 +2,8 @@ const Wine = require('../models/wine');
 
 module.exports = {
   create,
-  delete: deleteNote
+  delete: deleteNote,
+  edit
 }
 
 function create (req, res) {
@@ -26,4 +27,10 @@ function deleteNote (req, res) {
     .then( () => res.redirect(`/wines/${wine._id}`))
     .catch( err => next(err));
   })
+}
+
+function edit (req, res) {
+  Wine.findOne({'tastingNotes._id': req.params.id, 'tastingNotes.user': req.user._id}, 
+  (err, wine) => 
+    (err || !wine) ? res.redirect(`/wines/${wine._id}`) : res.render(`tasting-notes/edit`, {title: 'EDIT NOTE'}));
 }

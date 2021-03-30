@@ -9,5 +9,7 @@ router.get('/tasting-notes/:id/edit', isLoggedIn, tastingNotesCtrl.edit);
 router.post('/wines/:id/tasting-notes', isLoggedIn, tastingNotesCtrl.create);
 // DELETE delete a tasting note
 router.delete('/tasting-notes/:id', isLoggedIn, tastingNotesCtrl.delete);
+// PUT update a tasting note
+router.put('/tasting-notes/:id', isLoggedIn, tastingNotesCtrl.update);
 
 module.exports = router;

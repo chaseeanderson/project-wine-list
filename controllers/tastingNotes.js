@@ -3,7 +3,8 @@ const Wine = require('../models/wine');
 module.exports = {
   create,
   delete: deleteNote,
-  edit
+  edit,
+  update
 }
 
 function create (req, res) {
@@ -21,7 +22,7 @@ function deleteNote (req, res) {
   .then(function(wine) {
     // returns string of doc's id
     const note = wine.tastingNotes.id(req.params.id)
-    if (!note.user.equals(req.user._id)) return res.redirect('/wines/home');
+    if (!note.user.equals(req.user._id)) res.redirect('/wines/home');
     note.remove();
     wine.save()
     .then( () => res.redirect(`/wines/${wine._id}`))
@@ -30,10 +31,21 @@ function deleteNote (req, res) {
 }
 
 function edit (req, res) {
-  Wine.findOne({'tastingNotes._id': req.params.id, 'tastingNotes.user': req.user._id}, 
+  Wine.findOne({'tastingNotes._id': req.params.id}, 
   function (err, wine) {
     const note = wine.tastingNotes.id(req.params.id);
+    if (!note.user.equals(req.user._id)) res.redirect('/wines/home');
     if (err || !wine) res.redirect(`/wines/${wine._id}`);
     res.render(`tasting-notes/edit`, {title: 'EDIT NOTE', note});
-  }
-)}
+  });
+}
+
+function update (req, res) {
+  Wine.findOne({'tastingNotes._id': req.params.id},
+  function (err, wine) {
+    const note = wine.tastingNotes.id(req.params.id);
+    if (!note.user.equals(req.user._id)) res.redirect('/wines/home');
+    note.content = req.body.content;
+    wine.save(err => res.redirect(`/wines/${wine._id}`));
+  });
+}

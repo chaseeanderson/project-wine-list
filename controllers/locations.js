@@ -34,14 +34,14 @@ function show (req, res) {
 }
 
 function addToWine (req, res) {
-  Wine.findById(req.params.id, function (err, wine) {
+  Wine.findById(req.params.id, (err, wine) => {
     wine.location = req.body.locationId;
     wine.save(err => res.redirect(`/wines/${wine._id}`));
   });  
 }
 
 function edit (req, res) {
-  Location.findOne({_id: req.params.id}, function (err, location) {
+  Location.findOne({_id: req.params.id}, (err, location) => {
     if (err || !location) res.redirect('locations');
     if (!location.user.equals(req.user._id)) res.redirect('/wines/home');
     res.render('locations/edit', {title: 'EDIT ME', location});

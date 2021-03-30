@@ -13,7 +13,7 @@ module.exports = {
 
 
 function index (req, res) {
-  Wine.find({usersListing: req.user._id}).populate('location').exec(function(err, wines) {
+  Wine.find({usersListing: req.user._id}).populate('location').exec((err, wines) => {
     res.render('wines/home', {title: 'THE JUICE', wines});
   });
 }
@@ -25,29 +25,31 @@ function newWine (req, res) {
 function create (req, res) {
   const wine = new Wine(req.body);
   wine.usersListing.push(req.user._id);
+  wine.user = req.user._id;
   wine.save(err => {
     err ? res.render('wines/new') : res.redirect('home');
   });
 }
 
 function show (req, res) {
-  Wine.findById(req.params.id).populate('location').exec(function(err, wine) {
-    Location.find({}).sort({country: 'asc'}).exec(function (err, locations) {
+  Wine.findById(req.params.id).populate('location').exec((err, wine) => {
+    Location.find({}).sort({country: 'asc'}).exec((err, locations) => {
       res.render('wines/show', {title: 'WHAT ARE WE DRINKING?', wine, locations});
     });
   });
 }
 
 function deleteWine (req, res) {
-  Wine.findOneAndDelete({_id: req.params.id, usersListing: req.user._id}, function (err) {
-    res.redirect('home');
-  });
+  Wine.findOneAndDelete({_id: req.params.id, usersListing: req.user._id}, 
+    (err, wine) => {
+      (!wine.user.equals(req.user._id)) ? res.redirect('home') : res.redirect('home');
+    }
+  );
 }
 
 function edit (req, res) {
-  Wine.findOne({_id: req.params.id, usersListing: req.user._id}, function (err, wine) {
-    if (err || !wine) res.redirect('home');
-    res.render('wines/edit', {title: 'EDIT ME', wine});
+  Wine.findOne({_id: req.params.id, usersListing: req.user._id}, (err, wine) => {
+    (err || !wine) ? res.redirect('home') : res.render('wines/edit', {title: 'EDIT ME', wine});
   });
 }
 
@@ -55,9 +57,8 @@ function update (req, res) {
   Wine.findOneAndUpdate({_id: req.params.id, usersListing: req.user._id},
     req.body,
     {new: true},
-    function (err, wine) {
-      if (err || !wine) res.redirect('home');
-      res.redirect(`${req.params.id}`);
+    (err, wine) => {
+      (err || !wine) ? res.redirect('home') : res.redirect(`${req.params.id}`);
     }
   );
 }

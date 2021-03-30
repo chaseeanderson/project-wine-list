@@ -16,7 +16,8 @@ const wineSchema = new Schema({
   vintage: {type: Number},
   price: {type: Number},
   tastingNotes: [tastingNoteSchema],
-  usersListing: [{type: Schema.Types.ObjectId, ref: 'User'}]
+  usersListing: [{type: Schema.Types.ObjectId, ref: 'UsersListing'}],
+  user: {type: Schema.Types.ObjectId, ref: 'User'}
 }, {timestamps: true});
 
 

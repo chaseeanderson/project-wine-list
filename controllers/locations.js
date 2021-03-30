@@ -7,7 +7,8 @@ module.exports = {
   create,
   show,
   addToWine,
-  edit
+  edit,
+  update
 }
 
 function index (req, res) {
@@ -43,4 +44,14 @@ function edit (req, res) {
     if (err || !location) res.redirect('location');
     res.render('locations/edit', {title: 'EDIT ME', location});
   });
+}
+
+function update (req, res) {
+  Location.findOneAndUpdate({_id: req.params.id, user: req.user._id},
+    req.body,
+    {new: true},
+    (err, location) => {
+      (err || !location) ? res.redirect('location') : res.redirect(`${req.params.id}`);
+    }
+  );
 }

@@ -1,5 +1,8 @@
 <%- include('../partials/header') %>
 
-
+<form action="/tasting-notes/<%= note._id %>?_method=PUT" method="POST">
+<textarea name="content"><%= note.content %></textarea>
+<button type="submit">UPDATE NOTE</button>
+</form>
 
 <%- include('../partials/footer') %>

@@ -15,12 +15,14 @@
 <% if (wine.location) { %>
 <label>Location:</label>
 <h4><%= wine.location.country %></h4>
+<h4><%= wine.location.region %></h4>
+<h4><%= wine.location.subRegion %></h4>
 <% } else { %>
     
   <form action="/wines/<%= wine._id %>/locations" method="POST">
     <select name="locationId">
       <%- locations.map(l => 
-      `<option value="${l._id}">${l.country} | ${l.region} | ${l.subRegion} </option>`
+      `<option value="${l._id}">${l.country}</option>`
       ).join('') %> 
     </select>
     <button type="submit">ADD A PLACE</button>

@@ -1,8 +1,27 @@
-.bg-img {
+.hero-body {
   background-image: url("https://i.imgur.com/BA4XSNw.jpg");
   background-position: center center;
   background-repeat:  no-repeat;
   background-attachment: fixed;
   background-size:  cover;
-  opacity: 0.4;
+}
+
+.title {
+  color: #2F1B17
+}
+
+.button {
+  background-color: #2F1B17;
+  color: white;
+}
+.button:hover {
+  background-color: #2F1B17;
+  color: white;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+nav {
+  background-color: #2F1B17;
 }

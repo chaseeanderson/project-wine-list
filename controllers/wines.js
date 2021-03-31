@@ -49,7 +49,10 @@ function deleteWine (req, res) {
 
 function edit (req, res) {
   Wine.findOne({_id: req.params.id, usersListing: req.user._id}, (err, wine) => {
-    (err || !wine) ? res.redirect('home') : res.render('wines/edit', {title: 'EDIT ME', wine});
+    Location.find({}).sort({country: 'asc'}).exec((err, locations) => {
+      if (!wine.user.equals(req.user._id)) res.redirect('home');
+      (err || !wine) ? res.redirect('home') : res.render('wines/edit', {title: 'EDIT ME', wine, locations});
+    });
   });
 }
 
@@ -58,6 +61,8 @@ function update (req, res) {
     req.body,
     {new: true},
     (err, wine) => {
+      console.log('SUBMISSION: ', req.body)
+      if (!wine.user.equals(req.user._id)) res.redirect('home');
       (err || !wine) ? res.redirect('home') : res.redirect(`${req.params.id}`);
     }
   );

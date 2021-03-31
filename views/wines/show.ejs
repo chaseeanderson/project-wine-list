@@ -22,7 +22,7 @@
   <form action="/wines/<%= wine._id %>/locations" method="POST">
     <select name="locationId">
       <%- locations.map(l => 
-      `<option value="${l._id}">${l.country}</option>`
+      `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
       ).join('') %> 
     </select>
     <button type="submit">ADD A PLACE</button>

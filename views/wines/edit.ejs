@@ -1,10 +1,16 @@
 <%- include('../partials/header') %>
 
-<form action="/wines/<%= wine._id %>?_method=PUT" method="POST" id="new-form">
+<form action="/wines/<%= wine._id %>?_method=PUT" method="POST">
   <label>Producer:</label>
   <input type="text" name="producer" value="<%= wine.producer %>">
-<!--<label>Location:</label>
-  <input type="text" name="location" value="<%= wine.location %>">-->
+  <% if (wine.location) { %>
+  <label>Location:</label>
+    <select name="location">
+      <%- locations.map(l => 
+      `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
+      ).join('') %> 
+    </select>
+  <% } %>
   <label>Producer Details:</label>
   <input type="text" name="producerDetails" value="<%= wine.producerDetails %>">
   <label>Variety:</label>

@@ -10,11 +10,11 @@
   color: #2F1B17
 }
 
-.button {
+.button.login {
   background-color: #2F1B17;
   color: white;
 }
-.button:hover {
+.button.login:hover {
   background-color: #2F1B17;
   color: white;
   transform: scale(1.1);

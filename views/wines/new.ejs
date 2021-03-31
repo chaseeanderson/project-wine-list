@@ -1,18 +1,45 @@
 <%- include('../partials/header') %>
 
-<form action="/wines/home" method="POST" id="new-form">
-  <label>Producer:</label>
-  <input type="text" name="producer">
-  <label>Producer Details:</label>
-  <input type="text" name="producerDetails">
-  <label>Variety:</label>
-  <input type="text" name="variety">
-  <label>Vintage:</label>
-  <input type="number" required pattern="\d{4}" name="vintage">
-  <label>Price:</label>
-  <input type="number" name="price">
-  <input type="submit" value="ADD THAT JUICE">  
-</form>
-
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half">
+    <form action="/wines/home" method="POST">
+      <div class="field is-grouped-centered">
+        <label class="label">Producer:</label>
+          <div class="control">
+            <input class="input" type="text" name="producer">
+          </div>
+      </div>
+      <div class="field">
+        <label class="label">Producer Details:</label>
+          <div class="control">
+            <input class="input" type="text" name="producerDetails">
+          </div>
+      </div>
+      <div class="field">
+        <label class="label">Variety:</label>
+          <div class="control">
+            <input class="input" type="text" name="variety">
+          </div>
+      </div>
+      <div class="field">
+        <label class="label">Vintage:</label>
+          <div class="control">
+            <input class="input" type="number" required pattern="\d{4}" name="vintage">
+          </div>
+      </div>    
+      <div class="field">
+        <label class="label">Price:</label>
+          <div class="control has-icons-left">
+            <input class="input" type="number" name="price">
+            <span class="icon is-left">
+              <i class="fa fa-usd"></i>
+            </span>
+          </div>
+        <p class="help">Please enter amount in USD.</p>  
+      </div>
+        <input class="button" type="submit" value="ADD THAT JUICE">  
+    </form>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

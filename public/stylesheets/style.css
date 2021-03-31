@@ -22,6 +22,15 @@
   cursor: pointer;
 }
 
-nav {
+.navbar {
   background-color: #2F1B17;
+}
+
+.navbar-item {
+  color: white;
+}
+
+.navbar-item:hover {
+  color: #2F1B17;
+  background-color: teal;
 }

@@ -1,5 +1,36 @@
 <%- include('../partials/header') %>
 
+<div class="columns">
+  <div class="column is-half">
+    <div class="card">
+      <% if (location.subRegion) { %>
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= location.region %> > <%= location.subRegion %>
+        </p>
+      </header>
+      <% } else if (location.region) { %>
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= location.region %> 
+        </p>
+      </header>
+      <% } %>
+      <div class="card-content">
+        <p class="content">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore odio, qui vero soluta enim consectetur vel tenetur incidunt neque voluptatibus porro distinctio possimus aliquid? Ratione ipsam dicta inventore doloribus saepe?
+        </p>
+      </div>
+      <footer class="card-footer">
+        <% if (user && user._id.equals(location.user)) { %>
+        <a class="button" href="/locations/<%= location._id %>/edit">EDIT</a>
+        <% } %>
+      </footer>
+    </div>
+  </div>
+</div>
+
+
 <label>Region:</label>
 <h4><%= location.region %></h4>
 <label>Sub Region:</label>

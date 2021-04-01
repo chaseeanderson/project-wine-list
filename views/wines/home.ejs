@@ -1,40 +1,51 @@
 <%- include('../partials/header') %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Vintage</th>
-      <th>Location</th>
-      <th>Producer</th>
-      <th>Variety</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% wines.forEach(function(w) { %>
-      <tr>
-        <td><%= w.vintage %></td>
-        <% if (w.location) { %>
-        <td><%= w.location.country %></td>
-        <% } else { %>
-          <td></td>
-        <% } %>
-        <td><%= w.producer %></td>
-        <td><%= w.variety %></td>
-        <td><%= w.price %></td>
-        <td><a href="/wines/<%= w._id %>">EXPLORE</a></td>
-        <% if (user && user._id.equals(w.user)) { %>
-          <td>
-            <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
-              <button type="submit">REMOVE</button>
-            </form>
-          </td>
-        <% } %>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
-    <a href="/wines/new">ADD SOME JUICE!</a>
-    <a href="/locations">LOCATION GUIDE</a>
-    
-    <%- include('../partials/footer') %>
+<div class="columns is-centered">
+  <div class="column">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Vintage</th>
+          <th>Location</th>
+          <th>Producer</th>
+          <th>Variety</th>
+          <th>Price</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% wines.forEach(function(w) { %>
+          <tr>
+            <td><%= w.vintage %></td>
+            <% if (w.location) { %>
+              <td><%= w.location.country %></td>
+              <% } else { %>
+                <td></td>
+                <% } %>
+                <td><%= w.producer %></td>
+                <td><%= w.variety %></td>
+                <td><%= w.price %></td>
+                <td><a class="button is-small" href="/wines/<%= w._id %>">EXPLORE</a></td>
+                <% if (user && user._id.equals(w.user)) { %>
+                  <td>
+                    <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
+                      <button class="button is-small" type="submit">REMOVE</button>
+                    </form>
+                  </td>
+                  <% } %>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+  </div>
+</div>
+          <div class="columns is-centered">
+            <div class="column is-half is-narrow has-text-centered">
+              
+              <a class="button" href="/wines/new">ADD SOME JUICE!</a>
+              <a class="button" href="/locations">LOCATION GUIDE</a>
+            </div>
+          </div>
+          
+          <%- include('../partials/footer') %>

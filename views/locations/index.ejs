@@ -1,15 +1,19 @@
 <%- include('../partials/header') %>
 
-<table>
+<table class="table is-fullwidth">
   <thead>
     <tr>
       <th>Country</th>
+      <th>Region</th>
+      <th>Sub Region</th>
     </tr>
   </thead>
   <tbody>
     <% locations.forEach(function(l) { %>
       <tr>
         <td><%= l.country %></td>
+        <td><%= l.region %></td>
+        <td><%= l.subRegion %></td>
         <td><a href="/locations/<%= l._id %>">EXPLORE</a></td>
         <% if (user && user._id.equals(l.user)) { %>
           <td>

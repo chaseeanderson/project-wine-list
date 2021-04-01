@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<div class="columns">
+<div class="columns is-centered">
   <div class="column is-half">
     <div class="card">
       <% if (location.subRegion) { %>
@@ -29,14 +29,5 @@
     </div>
   </div>
 </div>
-
-
-<label>Region:</label>
-<h4><%= location.region %></h4>
-<label>Sub Region:</label>
-<h4><%= location.subRegion %></h4>
-<label>Location Details:</label>
-<h4><%= location.locationDetails %></h4>
-<a href="/locations/<%= location._id %>/edit">EDIT</a>
 
 <%- include('../partials/footer') %>

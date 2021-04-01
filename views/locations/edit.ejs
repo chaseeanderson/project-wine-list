@@ -1,15 +1,31 @@
 <%- include('../partials/header') %>
 
-<form action="/locations/<%= location._id %>?_method=PUT" method="POST" id="new-form">
-  <label>Country:</label>
-  <input type="text" name="country" value="<%= location.country %>">
-  <label>Region:</label>
-  <input type="text" name="region" value="<%= location.region %>">
-  <label>Sub Region:</label>
-  <input type="text" name="subRegion" value="<%= location.subRegion %>">
-  <label>Location Details:</label>
-  <input type="text" name="locationDetails" value="<%= location.locationDetails %>">
-  <input type="submit" value="UPDATE THAT PLACE">  
-</form>
+
+<div class="columns is-centered">
+  <div class="column is-half">
+    <form action="/locations/<%= location._id %>?_method=PUT" method="POST">
+      <div class="field is-grouped-centered">
+        <label class="label">Country:</label>
+          <div class="control">
+            <input class="input" type="text" name="country" value="<%= location.country %>">
+          </div>
+        <label class="label">Location Details:</label>
+          <div class="control">
+            <textarea class="textarea" type="text" name="locationDetails"><%= location.locationDetails %></textarea>
+          </div>
+        <label class="label">Region:</label>
+          <div class="control">
+            <input class="input" type="text" name="region" value="<%= location.region %>">
+          </div>
+        <label class="label">Sub Region:</label>
+          <div class="control">
+            <input class="input" type="text" name="subRegion" value="<%= location.subRegion %>">
+          </div>
+      </div>
+        <input class="button" type="submit" value="UPDATE THAT PLACE">  
+    </form>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>
+

@@ -30,7 +30,7 @@
   color: white;
 }
 
-.navbar-item:hover {
-  color: #2F1B17;
-  background-color: teal;
+.title {
+  padding-left: 2rem;
+  padding-top: 2rem;
 }

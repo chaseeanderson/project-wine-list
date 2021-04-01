@@ -27,7 +27,7 @@ function create (req, res) {
   wine.usersListing.push(req.user._id);
   wine.user = req.user._id;
   wine.save(err => {
-    err ? res.render('wines/new') : res.redirect('home');
+    err ? res.redirect('/wines/new') : res.redirect('home');
   });
 }
 

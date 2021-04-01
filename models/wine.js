@@ -13,8 +13,8 @@ const wineSchema = new Schema({
   producerDetails: {type: String},
   location: {type: Schema.Types.ObjectId, ref: 'Location'},
   variety: {type: String},
-  vintage: {type: Number},
-  price: {type: Number},
+  vintage: {type: Number, validate: {validator: (v) => /[1-9]\d{3}/.test(v)}},
+  price: {type: Number, min: 0},
   tastingNotes: [tastingNoteSchema],
   usersListing: [{type: Schema.Types.ObjectId, ref: 'UsersListing'}],
   user: {type: Schema.Types.ObjectId, ref: 'User'}

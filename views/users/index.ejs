@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<div class="columns">
+  <div class="column is-10 is-offset-1">
+    <table class="table is-fullwidth has-text-centered">
+      <thead>
+        <tr>
+          <th class="is-borderless"></th>
+          <th>Name</th>
+          <th>Wines In Collection</th>
+          <th class="is-borderless"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(function(u) { %>
+          <tr class="is-borderless is-vcentered">
+            <% if (!user._id.equals(u.id)) { %>
+            <td class="is-inline-flex pl-0 pr-0">
+              <figure class="image is-32x32">
+                <img class="is-rounded" src="<%= u.avatar %>">
+              </figure>
+              <%= u.name %>
+            </td>
+            <td><a class="button is-small" href="/users/<%= u._id %>">EXPLORE</a></td>
+            <% } %>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

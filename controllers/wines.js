@@ -1,6 +1,7 @@
 const Wine = require('../models/wine');
 const Location = require('../models/location');
 
+
 module.exports = {
   index,
   new: newWine,

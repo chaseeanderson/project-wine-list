@@ -1,6 +1,5 @@
 <%- include('../partials/header') %>
 
-
 <div class="columns is-centered">
   <div class="column is-half">
     <div class="box mb-4">
@@ -17,7 +16,7 @@
                   `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
                   ).join('') %> 
                 </select>
-            <% } %>    
+          <% } %>    
           <label class="label">Variety:</label>
             <div class="control">
               <input class="input" type="text" name="variety" value="<%= wine.variety %>">
@@ -40,6 +39,5 @@
     </div>
   </div>
 </div>
-
 
 <%- include('../partials/footer') %>

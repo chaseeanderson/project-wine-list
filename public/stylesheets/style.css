@@ -30,6 +30,14 @@
   color: white;
 }
 
+a.navbar-item:hover {
+  color: #2F1B17!important;
+}
+
+a.navbar-item:active {
+  color: #2F1B17!important;
+}
+
 .title {
   padding-left: 2rem;
   padding-top: 2rem;
@@ -42,4 +50,8 @@
 
 button.location {
   opacity: 0.1;
+}
+
+.icon.bottle {
+  margin: 0.5rem;
 }

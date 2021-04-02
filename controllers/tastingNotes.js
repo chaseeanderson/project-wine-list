@@ -18,16 +18,14 @@ function create (req, res) {
 }
 
 function deleteNote (req, res) {
-  Wine.findOne({'tastingNotes._id': req.params.id})
-  .then(function(wine) {
+  Wine.findOne({'tastingNotes._id': req.params.id}, (err, wine) => {
     // returns string of doc's id
     const note = wine.tastingNotes.id(req.params.id)
     if (!note.user.equals(req.user._id)) res.redirect('/wines/home');
     note.remove();
-    wine.save()
-    .then( () => res.redirect(`/wines/${wine._id}`))
-    .catch( err => next(err));
-  })
+    wine.save();
+    err ? res.redirect('/wines/home') : res.redirect(`/wines/${wine._id}`);
+  });
 }
 
 function edit (req, res) {

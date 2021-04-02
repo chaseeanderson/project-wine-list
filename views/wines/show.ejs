@@ -1,15 +1,78 @@
 <%- include('../partials/header') %>
 
-<label>Vintage:</label>
-<h4><%= wine.vintage %></h4>
-<label>Producer:</label>
-<h4><%= wine.producer %></h4>
-<label>Variety:</label>
-<h4><%= wine.variety %></h4>
-<label>Producer Details:</label>
-<h4><%= wine.producerDetails %></h4>
-<label>Price:</label>
-<h4><%= wine.price %></h4> 
+<div class="columns is-multiline">
+  <div class="column is-7 is-offset-1">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title title is-2 is-centered is-inline-flex">
+            <%= wine.producer %> <span class="title is-6 is-italic pl-2 pb-4"><%= wine.variety %></span>
+        </p>
+      </header>  
+      <div class="card-content">
+        <div class="content is-italic has-text-right">
+          $<%= wine.price %>
+        </div>
+        <div class="content">
+          <%= wine.producerDetails %>
+        </div>
+      </div>
+      <% if (user && user._id.equals(wine.user)) { %>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          <a class="button is-small" href="/wines/<%= wine._id %>/edit">EDIT</a>
+        </p>
+      </footer>
+      <% } %>
+    </div>
+  </div>
+  <div class="column is-3">
+    <% if (wine.location) { %>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title title">
+          <%= wine.location.country %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <% if (wine.location.subRegion) { %>
+            <p class="subtitle"><%= wine.location.region %> > <%= wine.location.subRegion %></p>
+          <% } else if (wine.locatin.region) { %>
+              <p class="subtitle"><%= wine.location.region %></p>
+          <% } %>  
+        </div>
+        <div class="content">
+          <p><%= wine.location.locationDetails %></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          <a class="button is-small" href="/locations/<%= wine.location._id %>">EXPLORE</a>
+        </p>
+      </footer>
+    </div>
+  </div>
+  <% } else { %>
+    <div class="box">
+      <form action="/wines/<%= wine._id %>/locations" method="POST">
+        <select class="select" name="locationId">
+          <%- locations.map(l => 
+          `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
+          ).join('') %> 
+        </select>
+        <button class="button" type="submit">ADD A PLACE</button>
+      </form>
+    </div>
+  <% } %>
+</div>
+
+
+
+
+
+
+
+
 <a href="/wines/<%= wine._id %>/edit">EDIT</a>
 
 <% if (wine.location) { %>
@@ -19,14 +82,7 @@
 <h4><%= wine.location.subRegion %></h4>
 <% } else { %>
     
-  <form action="/wines/<%= wine._id %>/locations" method="POST">
-    <select name="locationId">
-      <%- locations.map(l => 
-      `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
-      ).join('') %> 
-    </select>
-    <button type="submit">ADD A PLACE</button>
-  </form>
+
   
 <% } %>
 <h2>Tasting Notes</h2>

@@ -2,6 +2,7 @@
 
 <div class="columns is-multiline">
   <div class="column is-7 is-offset-1">
+<!-- PRODUCER CARD -->
     <div class="card">
       <header class="card-header">
         <p class="card-header-title title is-2 is-centered is-inline-flex">
@@ -24,7 +25,68 @@
       </footer>
       <% } %>
     </div>
+<!-- TASTING NOTES CARD -->
+  <div class="columns is-2 is-variable pt-5">
+    <div class="column">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title title is-2 is-centered">
+            Tasting Notes
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <% if (wine.tastingNotes.length) { %>
+              <table class="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th class="pr-0">User</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <% wine.tastingNotes.forEach(function(note) { %>
+                    <tr>
+                      <td class="is-inline-flex pl-0 pr-0">
+                        <figure class="image is-32x32">
+                          <img class="is-rounded" src="<%= note.userAvatar %>">
+                        </figure>
+                        <%= note.userName %>
+                      </td>
+                      <td><%= note.createdAt.toLocaleDateString() %></td>
+                      <td><%= note.content %></td>
+                      <% if (user && user._id.equals(note.user)) { %>
+                      <td class="is-vcentered">
+                        <form action="/tasting-notes/<%= note._id %>?_method=DELETE" method="POST">
+                          <button class="button is-small" type="submit">REMOVE</button>
+                        </form>
+                      </td>
+                      <td class="is-vcentered"><a class="button is-small" href="/tasting-notes/<%= note._id %>/edit">EDIT</a></td>
+                      <% } %>
+                    </tr>
+                  <% }); %>  
+                </tbody>
+              </table>
+            <% } else { %> 
+              <h6>Don't Be Shy! What'd You Think?</h6>
+            <% } %>
+            <% if (user) { %> 
+            <form action="/wines/<%= wine._id %>/tasting-notes" method="POST">
+              <textarea class="textarea mb-2" name="content" placeholder="What'd you think?"></textarea>
+              <input class="button" type="submit" value="SEND IT">
+            </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+<!-- LOCATION CARD -->
   <div class="column is-3">
     <% if (wine.location) { %>
     <div class="card">
@@ -64,67 +126,5 @@
       </form>
     </div>
   <% } %>
-</div>
-
-
-
-
-
-
-
-
-<a href="/wines/<%= wine._id %>/edit">EDIT</a>
-
-<% if (wine.location) { %>
-<label>Location:</label>
-<h4><%= wine.location.country %></h4>
-<h4><%= wine.location.region %></h4>
-<h4><%= wine.location.subRegion %></h4>
-<% } else { %>
-    
-
   
-<% } %>
-<h2>Tasting Notes</h2>
-
-<% if (wine.tastingNotes.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>User</th>
-        <th>Date</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% wine.tastingNotes.forEach(function(note) { %>
-        <tr>
-          <td><img src="<%= note.userAvatar %>"><%= note.userName %></td>
-          <td><%= note.createdAt.toLocaleDateString() %></td>
-          <td><%= note.content %></td>
-          <% if (user && user._id.equals(note.user)) { %>
-          <td>
-            <form action="/tasting-notes/<%= note._id %>?_method=DELETE" method="POST">
-              <button type="submit">REMOVE</button>
-            </form>
-          </td>
-          <td><a href="/tasting-notes/<%= note._id %>/edit">EDIT</a></td>
-          <% } %>
-        </tr>
-      <% }); %>  
-    </tbody>
-  </table>
-<% } else { %> 
-  <h4>Don't Be Shy! What'd You Think?</h4>
-<% } %>
-
-<% if (user) { %> 
-<form action="/wines/<%= wine._id %>/tasting-notes" method="POST">
-  <textarea name="content" placeholder="What'd you think?"></textarea>
-  <input type="submit" value="SEND IT">
-</form>
-<% } %>
-
-
-
-<%- include('../partials/footer') %>
+</div>

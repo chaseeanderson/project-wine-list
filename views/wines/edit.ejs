@@ -1,25 +1,45 @@
 <%- include('../partials/header') %>
 
-<form action="/wines/<%= wine._id %>?_method=PUT" method="POST">
-  <label>Producer:</label>
-  <input type="text" name="producer" value="<%= wine.producer %>">
-  <% if (wine.location) { %>
-  <label>Location:</label>
-    <select name="location">
-      <%- locations.map(l => 
-      `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
-      ).join('') %> 
-    </select>
-  <% } %>
-  <label>Producer Details:</label>
-  <input type="text" name="producerDetails" value="<%= wine.producerDetails %>">
-  <label>Variety:</label>
-  <input type="text" name="variety" value="<%= wine.variety %>">
-  <label>Vintage:</label>
-  <input type="number" required pattern="\d{4}" name="vintage" value="<%= wine.vintage %>">
-  <label>Price:</label>
-  <input type="number" name="price" value="<%= wine.price %>">
-  <input type="submit" value="UPDATE THAT JUICE">  
-</form>
+
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="box mb-4">
+      <form action="/wines/<%= wine._id %>?_method=PUT" method="POST">
+        <div class="field is-grouped-centered">
+          <label class="label">Producer:</label>
+            <div class="control">
+              <input class="input" type="text" name="producer" value="<%= wine.producer %>">
+            </div>
+          <% if (wine.location) { %>
+            <label class="label">Location:</label>
+              <select class="select" name="location">
+                <%- locations.map(l => 
+                  `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
+                  ).join('') %> 
+                </select>
+            <% } %>    
+          <label class="label">Variety:</label>
+            <div class="control">
+              <input class="input" type="text" name="variety" value="<%= wine.variety %>">
+            </div>
+          <label class="label">Vintage:</label>
+            <div class="control">
+              <input class="input" type="text" name="vintage" value="<%= wine.vintage %>">
+            </div>
+          <label class="label">Price:</label>
+            <div class="control">
+              <input class="input" type="text" name="price" value="<%= wine.price %>">
+            </div>
+          <label class="label">Producer Details:</label>
+            <div class="control">
+              <textarea class="textarea" type="text" name="wineDetails"><%= wine.wineDetails %></textarea>
+            </div>
+          <input class="button mt-2" type="submit" value="UPDATE THAT JUICE">  
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <%- include('../partials/footer') %>

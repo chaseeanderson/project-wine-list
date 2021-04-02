@@ -1,5 +1,51 @@
 <%- include('../partials/header') %>
 
+<div class="columns">
+  <div class="column is-6 is-offset-3">
+    <div class="box">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th class="is-borderless"></th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>Sub Region</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% locations.forEach(function(l) { %>
+            <tr class="is-borderless is-vcentered">
+              <td class="has-text-right">
+                <% if (user && user._id.equals(l.user)) { %>
+                  <form class="delete" action="/locations/<%= l._id %>?_method=DELETE" method="POST">
+                    <button class="delete" type="submit"></button>
+                  </form>
+                <% } %>
+              </td>
+              <td><%= l.country %></td>
+              <td><%= l.region %></td>
+              <td><%= l.subRegion %></td>
+              <td><a class="button is-small" href="/locations/<%= l._id %>">EXPLORE</a></td>
+
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+    <div class="columns is-centered">
+      <div class="column is-half is-narrow has-text-centered">
+        <a class="button" href="/locations/new">ADD A PLACE</a>
+      </div>
+    </div>
+
+
+
+
+
+<!-- 
 <div class="columns is-multiline">
 
   <% locations.forEach(function (l) { %>
@@ -40,7 +86,7 @@
     </div>
       <% }); %>
       
-  </div>
+  </div> -->
     
     <!-- 
       <table class="table">

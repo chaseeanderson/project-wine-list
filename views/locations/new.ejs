@@ -2,27 +2,29 @@
 
 <div class="columns is-centered">
   <div class="column is-half">
-    <form action="/locations" method="POST">
-      <div class="field is-grouped-centered">
-        <label class="label">Country:</label>
-          <div class="control">
-            <input class="input" type="text" name="country">
-          </div>
-        <label class="label">Region:</label>
-          <div class="control">
-            <input class="input" type="text" name="region">
-          </div>
-        <label class="label">Sub Region:</label>
-          <div class="control">
-            <input class="input" type="text" name="subRegion">
-          </div>
-        <label class="label">Location Details:</label>
-          <div class="control">
-            <textarea class="textarea" type="text" name="locationDetails"></textarea>
-          </div>  
-      </div>
-        <input class="button" type="submit" value="ADD THAT PLACE">  
-    </form>
+    <div class="box">
+      <form action="/locations" method="POST">
+        <div class="field is-grouped-centered">
+          <label class="label">Country:</label>
+            <div class="control">
+              <input class="input" type="text" name="country">
+            </div>
+          <label class="label">Region:</label>
+            <div class="control">
+              <input class="input" type="text" name="region">
+            </div>
+          <label class="label">Sub Region:</label>
+            <div class="control">
+              <input class="input" type="text" name="subRegion">
+            </div>
+          <label class="label">Location Details:</label>
+            <div class="control">
+              <textarea class="textarea" type="text" name="locationDetails"></textarea>
+            </div>  
+        </div>
+          <input class="button" type="submit" value="ADD THAT PLACE">  
+      </form>
+    </div>
   </div>
 </div>
 

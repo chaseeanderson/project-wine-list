@@ -21,9 +21,11 @@
           <%= location.locationDetails %>
         </p>
       </div>
-      <footer class="card-footer">
-        <% if (user && user._id.equals(location.user)) { %>
-        <a class="button" href="/locations/<%= location._id %>/edit">EDIT</a>
+      <% if (user && user._id.equals(location.user)) { %>
+        <footer class="card-footer">
+          <p class="card-footer-item">
+            <a class="button" href="/locations/<%= location._id %>/edit">EDIT</a>
+          </p>
         <% } %>
       </footer>
     </div>

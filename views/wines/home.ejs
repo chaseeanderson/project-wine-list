@@ -5,6 +5,7 @@
     <table class="table is-fullwidth">
       <thead>
         <tr>
+          <th class="is-borderless"></th>
           <th>Vintage</th>
           <th>Location</th>
           <th>Producer</th>
@@ -16,7 +17,16 @@
       </thead>
       <tbody>
         <% wines.forEach(function(w) { %>
-          <tr>
+          <tr class="is-borderless is-vcentered">
+            <td class="has-text-right">
+              <% if (user && user._id.equals(w.user)) { %>
+                 
+                <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
+                  <button class="delete" type="submit"></button>
+                </form>
+              
+              <% } %>
+            </td>
             <td><%= w.vintage %></td>
             <% if (w.location) { %>
               <td><%= w.location.country %></td>
@@ -27,13 +37,7 @@
                 <td><%= w.variety %></td>
                 <td><%= w.price %></td>
                 <td><a class="button is-small" href="/wines/<%= w._id %>">EXPLORE</a></td>
-                <% if (user && user._id.equals(w.user)) { %>
-                  <td>
-                    <form action="/wines/<%= w._id %>?_method=DELETE" method="POST">
-                      <button class="button is-small" type="submit">REMOVE</button>
-                    </form>
-                  </td>
-                  <% } %>
+            
                 </tr>
                 <% }); %>
               </tbody>
@@ -42,8 +46,7 @@
 </div>
           <div class="columns is-centered">
             <div class="column is-half is-narrow has-text-centered">
-              
-              <a class="button" href="/wines/new">ADD SOME JUICE!</a>
+              <a class="button" href="/wines/new">ADD SOME JUICE</a>
               <a class="button" href="/locations">LOCATION GUIDE</a>
             </div>
           </div>

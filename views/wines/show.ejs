@@ -26,7 +26,7 @@
       <% } %>
     </div>
 <!-- TASTING NOTES CARD -->
-  <div class="columns is-2 is-variable pt-5">
+  <div class="columns is-2 pt-5">
     <div class="column">
       <div class="card">
         <header class="card-header">
@@ -115,15 +115,27 @@
     </div>
   </div>
   <% } else { %>
-    <div class="box">
-      <form action="/wines/<%= wine._id %>/locations" method="POST">
-        <select class="select" name="locationId">
-          <%- locations.map(l => 
-          `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
-          ).join('') %> 
-        </select>
-        <button class="button" type="submit">ADD A PLACE</button>
-      </form>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title title is-centered">
+          LOCATION
+        </p>
+      </header>
+      <div class="card-content">
+        <form action="/wines/<%= wine._id %>/locations" method="POST">
+          <select class="select" name="locationId">
+            <%- locations.map(l => 
+            `<option value="${l._id}">${l.country} || ${l.region} || ${l.subRegion}</option>`
+            ).join('') %> 
+          </select>
+            <button class="button is-small mt-4" type="submit">TAG A PLACE</button>
+        </form>
+      </div>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          <a class="button" href="/locations/new">NEW PLACE</a>
+        </p>
+      </footer>
     </div>
   <% } %>
   

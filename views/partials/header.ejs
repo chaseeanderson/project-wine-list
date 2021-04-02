@@ -20,20 +20,15 @@
         <p class="navbar-item">Hello, <%= user.name %>!</p>
       </div>
       <div class="navbar-end">
-
-        
         <% if (user) { %>
-
           <a class="navbar-item" href="/wines/home">HOME</a>
           <a class="navbar-item" href="/wines/new">BUILD A WINE</a>
           <a class="navbar-item" href="/locations/new">BUILD A PLACE</a>
           <a class="navbar-item" href="/locations">LOCATION GUIDE</a>
           <a class="navbar-item" href="/logout">LOG OUT</a>
-          
           <% } else { %>
             <a href="/auth/google" class="login">LOG IN</a>
             <% } %>
-
       </div>
     <div>
   </nav>

@@ -61,7 +61,6 @@ function update (req, res) {
     req.body,
     {new: true},
     (err, wine) => {
-      console.log('SUBMISSION: ', req.body)
       if (!wine.user.equals(req.user._id)) res.redirect('home');
       (err || !wine) ? res.redirect('home') : res.redirect(`${req.params.id}`);
     }

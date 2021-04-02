@@ -40,3 +40,6 @@
   border-bottom: hidden!important;
 }
 
+button.location {
+  opacity: 0.1;
+}
